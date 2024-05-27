@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\User;
+use Carbon\Carbon;
 
 use App\Http\Requests\CreateUserRequest;
 
@@ -27,6 +28,7 @@ class UserController extends Controller
         if(isset($request->type)) {
             $inputs = $request->all();
             $inputs['name'] = implode(', ', $constructName);
+            $inputs['birthdate'] = Carbon::parse($request->has('birthdate'))->format('Y-m-d');
 
             $user = User::create($inputs);
             $user->assignRole(1);

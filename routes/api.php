@@ -24,3 +24,8 @@ Route::get('/authenticate', function() {
     return response()->noContent();
 })->middleware('auth:sanctum');
 
+Route::get('/test', function () {
+
+    return response()->json('test');
+});
+
